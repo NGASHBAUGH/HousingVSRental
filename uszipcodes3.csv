@@ -1,4 +1,4 @@
-Zipcode,lat,lng,city,state_id,state_name,zcta,parent_zcta,population_zip,density,county_fips,county_name,county_weights,county_names_all,county_fips_all,imprecise,military,timezone
+zipcode,lat,lng,city,state_id,state_name,zcta,parent_zcta,population_zip,density,county_fips,county_name,county_weights,county_names_all,county_fips_all,imprecise,military,timezone
 601,18.18004,-66.75218,Adjuntas,PR,Puerto Rico,TRUE,,17242,111.4,72001,Adjuntas,"{'72001':99.43,'72141':0.57}",Adjuntas|Utuado,72001|72141,FALSE,FALSE,America/Puerto_Rico
 602,18.36073,-67.17517,Aguada,PR,Puerto Rico,TRUE,,38442,523.5,72003,Aguada,{'72003':100},Aguada,72003,FALSE,FALSE,America/Puerto_Rico
 603,18.45439,-67.12202,Aguadilla,PR,Puerto Rico,TRUE,,48814,667.9,72005,Aguadilla,{'72005':100},Aguadilla,72005,FALSE,FALSE,America/Puerto_Rico
