@@ -1,4 +1,4 @@
-Zipcode,lat,lng,city,state_id,state_name,zcta,parent_zcta,population_zip,density,county_fips,county_name,county_weights,county_names_all,county_fips_all,imprecise,military,timezone
+zipcode,lat,lng,city,state_id,state_name,zcta,parent_zcta,population_zip,density,county_fips,county_name,county_weights,county_names_all,county_fips_all,imprecise,military,timezone
 1001,42.06258,-72.6259,Agawam,MA,Massachusetts,TRUE,,17621,562.8,25013,Hampden,{'25013':100},Hampden,25013,FALSE,FALSE,America/New_York
 1002,42.37492,-72.4621,Amherst,MA,Massachusetts,TRUE,,30066,203.7,25015,Hampshire,"{'25011':0.97,'25015':99.03}",Hampshire|Franklin,25015|25011,FALSE,FALSE,America/New_York
 1003,42.39192,-72.52479,Amherst,MA,Massachusetts,TRUE,,11238,5629.7,25015,Hampshire,{'25015':100},Hampshire,25015,FALSE,FALSE,America/New_York
