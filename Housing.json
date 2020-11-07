@@ -1,0 +1,498 @@
+{
+    "zip" : ["95815","95824","95838","95660","95820","95832","95822","95823","95726","95673",
+        "95825","95833","95828","95842","95670","95821","95827","95621","95841","95667","95826",
+        "95843","95713","95610","95829","95632","95662","95695","95758","95678","96150","95835",
+        "95817","95631","95608","95677","95834","95776","95742","95624","95864","95691","95603",
+        "95648","95831","95682","95757","95661","95628","95747","95650","95765","95816","95818",
+        "95630","95819","95762","95616","96145","95746","96161"],
+    "metadata" : [
+        {
+           "Community": "Sacramento",
+           "ZIP": 95815,
+           "Sales": 27,
+           "median2017": 212500,
+           "median2018": 220000,
+           "Change": 3.5
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95824,
+           "Sales": 17,
+           "median2017": 195000,
+           "median2018": 222000,
+           "Change": 13.8
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95838,
+           "Sales": 42,
+           "median2017": 205000,
+           "median2018": 232000,
+           "Change": 13.2
+        },
+        {
+           "Community": "North Highlands",
+           "ZIP": 95660,
+           "Sales": 38,
+           "median2017": 240000,
+           "median2018": 235000,
+           "Change": -2.1
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95820,
+           "Sales": 51,
+           "median2017": 235000,
+           "median2018": 269000,
+           "Change": 14.5
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95832,
+           "Sales": 16,
+           "median2017": 255000,
+           "median2018": 273500,
+           "Change": 7.3
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95822,
+           "Sales": 59,
+           "median2017": 269000,
+           "median2018": 273500,
+           "Change": 1.7
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95823,
+           "Sales": 67,
+           "median2017": 256500,
+           "median2018": 277000,
+           "Change": 8
+        },
+        {
+           "Community": "Pollock Pines",
+           "ZIP": 95726,
+           "Sales": 16,
+           "median2017": 300100,
+           "median2018": 280000,
+           "Change": -6.7
+        },
+        {
+           "Community": "Rio Linda",
+           "ZIP": 95673,
+           "Sales": 16,
+           "median2017": 275000,
+           "median2018": 292500,
+           "Change": 6.4
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95825,
+           "Sales": 13,
+           "median2017": 242500,
+           "median2018": 295000,
+           "Change": 21.6
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95833,
+           "Sales": 34,
+           "median2017": 276500,
+           "median2018": 295000,
+           "Change": 6.7
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95828,
+           "Sales": 39,
+           "median2017": 278000,
+           "median2018": 295000,
+           "Change": 6.1
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95842,
+           "Sales": 23,
+           "median2017": 275000,
+           "median2018": 300000,
+           "Change": 9.1
+        },
+        {
+           "Community": "Rancho Cordova",
+           "ZIP": 95670,
+           "Sales": 48,
+           "median2017": 315000,
+           "median2018": 307000,
+           "Change": -2.5
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95821,
+           "Sales": 30,
+           "median2017": 329500,
+           "median2018": 315000,
+           "Change": -4.4
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95827,
+           "Sales": 12,
+           "median2017": 307500,
+           "median2018": 316000,
+           "Change": 2.8
+        },
+        {
+           "Community": "Citrus Heights",
+           "ZIP": 95621,
+           "Sales": 32,
+           "median2017": 306000,
+           "median2018": 316500,
+           "Change": 3.4
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95841,
+           "Sales": 13,
+           "median2017": 292000,
+           "median2018": 320000,
+           "Change": 9.6
+        },
+        {
+           "Community": "Placerville",
+           "ZIP": 95667,
+           "Sales": 27,
+           "median2017": 352000,
+           "median2018": 326000,
+           "Change": -7.4
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95826,
+           "Sales": 27,
+           "median2017": 315000,
+           "median2018": 329000,
+           "Change": 4.4
+        },
+        {
+           "Community": "Antelope",
+           "ZIP": 95843,
+           "Sales": 61,
+           "median2017": 322500,
+           "median2018": 350000,
+           "Change": 8.5
+        },
+        {
+           "Community": "Colfax",
+           "ZIP": 95713,
+           "Sales": 12,
+           "median2017": 341500,
+           "median2018": 355000,
+           "Change": 4
+        },
+        {
+           "Community": "Citrus Heights",
+           "ZIP": 95610,
+           "Sales": 29,
+           "median2017": 325000,
+           "median2018": 362000,
+           "Change": 11.4
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95829,
+           "Sales": 34,
+           "median2017": 339250,
+           "median2018": 365000,
+           "Change": 7.6
+        },
+        {
+           "Community": "Galt",
+           "ZIP": 95632,
+           "Sales": 29,
+           "median2017": 316000,
+           "median2018": 366000,
+           "Change": 15.8
+        },
+        {
+           "Community": "Orangevale",
+           "ZIP": 95662,
+           "Sales": 44,
+           "median2017": 350000,
+           "median2018": 375750,
+           "Change": 7.4
+        },
+        {
+           "Community": "Woodland",
+           "ZIP": 95695,
+           "Sales": 31,
+           "median2017": 380000,
+           "median2018": 377500,
+           "Change": -0.7
+        },
+        {
+           "Community": "Elk Grove",
+           "ZIP": 95758,
+           "Sales": 60,
+           "median2017": 382500,
+           "median2018": 377500,
+           "Change": -1.3
+        },
+        {
+           "Community": "Roseville",
+           "ZIP": 95678,
+           "Sales": 38,
+           "median2017": 384000,
+           "median2018": 378000,
+           "Change": -1.6
+        },
+        {
+           "Community": "South Lake Tahoe",
+           "ZIP": 96150,
+           "Sales": 54,
+           "median2017": 425000,
+           "median2018": 390000,
+           "Change": -8.2
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95835,
+           "Sales": 49,
+           "median2017": 375000,
+           "median2018": 398000,
+           "Change": 6.1
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95817,
+           "Sales": 24,
+           "median2017": 317500,
+           "median2018": 398750,
+           "Change": 25.6
+        },
+        {
+           "Community": "Foresthill",
+           "ZIP": 95631,
+           "Sales": 11,
+           "median2017": 397500,
+           "median2018": 399000,
+           "Change": 0.4
+        },
+        {
+           "Community": "Carmichael",
+           "ZIP": 95608,
+           "Sales": 61,
+           "median2017": 372250,
+           "median2018": 399500,
+           "Change": 7.3
+        },
+        {
+           "Community": "Rocklin",
+           "ZIP": 95677,
+           "Sales": 28,
+           "median2017": 440000,
+           "median2018": 405000,
+           "Change": -8
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95834,
+           "Sales": 20,
+           "median2017": 345750,
+           "median2018": 410000,
+           "Change": 18.6
+        },
+        {
+           "Community": "Woodland",
+           "ZIP": 95776,
+           "Sales": 18,
+           "median2017": 405000,
+           "median2018": 414500,
+           "Change": 2.3
+        },
+        {
+           "Community": "Rancho Cordova",
+           "ZIP": 95742,
+           "Sales": 13,
+           "median2017": 440000,
+           "median2018": 418000,
+           "Change": -5
+        },
+        {
+           "Community": "Elk Grove",
+           "ZIP": 95624,
+           "Sales": 74,
+           "median2017": 390000,
+           "median2018": 424000,
+           "Change": 8.7
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95864,
+           "Sales": 31,
+           "median2017": 550000,
+           "median2018": 425000,
+           "Change": -22.7
+        },
+        {
+           "Community": "West Sacramento",
+           "ZIP": 95691,
+           "Sales": 27,
+           "median2017": 390000,
+           "median2018": 429000,
+           "Change": 10
+        },
+        {
+           "Community": "Auburn",
+           "ZIP": 95603,
+           "Sales": 29,
+           "median2017": 407550,
+           "median2018": 440000,
+           "Change": 8
+        },
+        {
+           "Community": "Lincoln",
+           "ZIP": 95648,
+           "Sales": 74,
+           "median2017": 425000,
+           "median2018": 440000,
+           "Change": 3.5
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95831,
+           "Sales": 33,
+           "median2017": 395000,
+           "median2018": 443000,
+           "Change": 12.2
+        },
+        {
+           "Community": "Shingle Springs",
+           "ZIP": 95682,
+           "Sales": 29,
+           "median2017": 404000,
+           "median2018": 444000,
+           "Change": 9.9
+        },
+        {
+           "Community": "Elk Grove",
+           "ZIP": 95757,
+           "Sales": 42,
+           "median2017": 445000,
+           "median2018": 449000,
+           "Change": 0.9
+        },
+        {
+           "Community": "Roseville",
+           "ZIP": 95661,
+           "Sales": 45,
+           "median2017": 499250,
+           "median2018": 450000,
+           "Change": -9.9
+        },
+        {
+           "Community": "Fair Oaks",
+           "ZIP": 95628,
+           "Sales": 39,
+           "median2017": 417000,
+           "median2018": 455000,
+           "Change": 9.1
+        },
+        {
+           "Community": "Roseville",
+           "ZIP": 95747,
+           "Sales": 97,
+           "median2017": 450000,
+           "median2018": 465000,
+           "Change": 3.3
+        },
+        {
+           "Community": "Loomis",
+           "ZIP": 95650,
+           "Sales": 14,
+           "median2017": 391000,
+           "median2018": 487500,
+           "Change": 24.7
+        },
+        {
+           "Community": "Rocklin",
+           "ZIP": 95765,
+           "Sales": 40,
+           "median2017": 480000,
+           "median2018": 490000,
+           "Change": 2.1
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95816,
+           "Sales": 11,
+           "median2017": 644750,
+           "median2018": 532000,
+           "Change": -17.5
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95818,
+           "Sales": 22,
+           "median2017": 486250,
+           "median2018": 548500,
+           "Change": 12.8
+        },
+        {
+           "Community": "Folsom",
+           "ZIP": 95630,
+           "Sales": 59,
+           "median2017": 499000,
+           "median2018": 590000,
+           "Change": 18.2
+        },
+        {
+           "Community": "Sacramento",
+           "ZIP": 95819,
+           "Sales": 17,
+           "median2017": 574250,
+           "median2018": 595000,
+           "Change": 3.6
+        },
+        {
+           "Community": "El Dorado Hills",
+           "ZIP": 95762,
+           "Sales": 63,
+           "median2017": 575000,
+           "median2018": 625000,
+           "Change": 8.7
+        },
+        {
+           "Community": "Davis",
+           "ZIP": 95616,
+           "Sales": 12,
+           "median2017": 650100,
+           "median2018": 660750,
+           "Change": 1.6
+        },
+        {
+           "Community": "Tahoe City",
+           "ZIP": 96145,
+           "Sales": 12,
+           "median2017": 637500,
+           "median2018": 673000,
+           "Change": 5.6
+        },
+        {
+           "Community": "Granite Bay",
+           "ZIP": 95746,
+           "Sales": 29,
+           "median2017": 704500,
+           "median2018": 750000,
+           "Change": 6.5
+        },
+        {
+           "Community": "Truckee",
+           "ZIP": 96161,
+           "Sales": 13,
+           "median2017": 1035000,
+           "median2018": 1315500,
+           "Change": 27.1
+        }
+     ]
+}
