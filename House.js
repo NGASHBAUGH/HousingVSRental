@@ -12,11 +12,6 @@ d3.json(`https://www.quandl.com/api/v3/datasets/ZILLOW/C19496_ZHVISF?api_key=sPG
 });
 
 
-function area (area) {
-    var values = {'State' : "S" , "Country" : "CO" , "City" : "C" , "Zipcode" : "Z"}
-    ul = d3.select('#sample-metadata').html('')
-    Object.entries()
-}
 
 
 function optionChanged () {
