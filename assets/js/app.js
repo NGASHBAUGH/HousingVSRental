@@ -1,9 +1,19 @@
 var value = "Z"
 
-d3.csv("https://s3.amazonaws.com/quandl-production-static/zillow/indicators.csv").then(function (data){
-    console.log(data)
-})
+d3.json('ListingType.json').then(function (data) {
+    // console.log(Object.keys(data.ListingTypes[0]))
+    var Listings = Object.keys(data.ListingTypes[0]);
+    d3.select('#selDataset').selectAll('option').data(Listings)
+    .enter().append("option").html(function (d){
+        return d
+    })
 
+})
+function findID (ID) {
+    d3.json("ListingTypes.json").then(function(typeID) {
+            
+    })
+}
 
 function handleSubmit(){
     d3.event.preventDefault();
@@ -17,7 +27,7 @@ function apiCall(input) {
     console.log(input)
     console.log(areaCategory)
     apiKey = ""
-    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${resType}?api_key=${apikey}`
+    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_?api_key=${apikey}`
 
 }
 
@@ -29,15 +39,22 @@ function category () {
     console.log(txt)
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
     return areaCategory
-
 }
 
 
 
-d3.select()
+
 
 d3.select('#Submit').on('click' , handleSubmit);
-d3.selectAll('body').on('change' , category)
+d3.selectAll('#main').on('change' , category)
+
+function optionChanged () {
+    id = d3.select("#selDataset").property('value');
+    findID(id)
+    return id
+}
+
+
 
 // function getPlots(id){
 //     d3.json("/Housing.json").then (sampledata => {
