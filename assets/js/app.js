@@ -1,6 +1,14 @@
 var areaCategory = "Z"
+// TODO 
+//  Find out what is wrong with the Indicator codes I have
+//   Clean up graphs
+//      Add constant lines from Rafael's data
+//   add comments to the Javascript 
+//  Remove unused code 
+//  
 var indicatorCodePrice = 'ZHVISF'
 var indicatorCodeRental = "MRPST.json"
+
 
 d3.json('ListingType.json').then(function (data) {
     // console.log(Object.keys(data.ListingTypes[0]))
@@ -38,7 +46,6 @@ function apiCall(input) {
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
         console.log(ydate)
-        // console.log(Object.values(pulled))
         var trace = {
             x : ydate,
             y : xprice, 
