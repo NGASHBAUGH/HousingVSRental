@@ -1,8 +1,9 @@
-var value = "Z"
+var areaCategory = "Z"
+var indicatorCode = 'ZHVISF'
 
 d3.json('ListingType.json').then(function (data) {
     // console.log(Object.keys(data.ListingTypes[0]))
-    var Listings = Object.keys(data.ListingTypes[0]);
+    var Listings = Object.keys(data.ListingTypes);
     d3.select('#selDataset').selectAll('option').data(Listings)
     .enter().append("option").html(function (d){
         return d
@@ -10,8 +11,9 @@ d3.json('ListingType.json').then(function (data) {
 
 })
 function findID (ID) {
-    d3.json("ListingTypes.json").then(function(typeID) {
-            
+    d3.json("ListingType.json").then(function(typeID) {
+        var indicatorCode = typeID.ListingTypes[ID]
+        return indicatorCode
     })
 }
 
@@ -25,9 +27,35 @@ function handleSubmit(){
 
 function apiCall(input) {
     console.log(input)
-    console.log(areaCategory)
-    apiKey = ""
-    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_?api_key=${apikey}`
+    // console.log(areaCategory)
+    apiKey = "sPG_jsHhtuegYcT7TNWz"
+    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCode}?start_date=2017-01-01&api_key=${apiKey}`
+    console.log(url)
+    d3.json(url).then(function (pulled) {
+        var xprice = []
+        var ydate = []
+        pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
+        pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
+        console.log(ydate)
+        // console.log(Object.values(pulled))
+        var trace = {
+            x : ydate,
+            y : xprice, 
+            type : 'bar'
+        };
+        var barData = [trace];
+
+        var layout = {
+            title : "Title here ",
+            xaxis : {
+                label : "X axis here", 
+                range : [ d3.min(xprice), d3.max(xprice) ]
+            }
+        };
+
+        Plotly.newPlot('bar', barData , layout , );
+
+    })
 
 }
 
@@ -38,7 +66,7 @@ function category () {
     console.log(areaCategory)
     console.log(txt)
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
-    return areaCategory
+    return areaCategry
 }
 
 
@@ -46,12 +74,12 @@ function category () {
 
 
 d3.select('#Submit').on('click' , handleSubmit);
-d3.selectAll('#main').on('change' , category)
+areaCategroy = d3.selectAll('#main').on('change' , category)
 
 function optionChanged () {
     id = d3.select("#selDataset").property('value');
-    findID(id)
-    return id
+    var indicatorCode = findID(id)
+    return indicatorCode
 }
 
 

@@ -1,4 +1,4 @@
-{"ListingTypes" : [{"Age of Inventory (Public)":"AOIP",
+{"ListingTypes" : {"Age of Inventory (Public)":"AOIP",
 "Buyer Seller Index":"BSI",
 "Days on Zillow (Public)":"DOZP",
 "Home Sales (NSA)":"SALES",
@@ -104,4 +104,4 @@
 "Zillow Rental Index - Single-Family Residence Summary":"ZRISFRRS",
 "Zillow Rental Index - Single-Family Residence":"ZRISFRR",
 "Zillow Rental Index Per Square Foot - All Homes":"ZRIFAH"
-}]}
+}}
