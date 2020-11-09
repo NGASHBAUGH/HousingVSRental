@@ -1,5 +1,6 @@
 var areaCategory = "Z"
-var indicatorCode = 'ZHVISF'
+var indicatorCodePrice = 'ZHVISF'
+var indicatorCodeRental = "MRPST.json"
 
 d3.json('ListingType.json').then(function (data) {
     // console.log(Object.keys(data.ListingTypes[0]))
@@ -12,8 +13,8 @@ d3.json('ListingType.json').then(function (data) {
 })
 function findID (ID) {
     d3.json("ListingType.json").then(function(typeID) {
-        var indicatorCode = typeID.ListingTypes[ID]
-        return indicatorCode
+        var indicatorCodePrice = typeID.ListingTypes[ID]
+        return indicatorCodePrice
     })
 }
 
@@ -26,10 +27,10 @@ function handleSubmit(){
 }
 
 function apiCall(input) {
-    console.log(input)
-    // console.log(areaCategory)
+    // console.log(input)
+    console.log(areaCategory)
     apiKey = "sPG_jsHhtuegYcT7TNWz"
-    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCode}?start_date=2017-01-01&api_key=${apiKey}`
+    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=${apiKey}`
     console.log(url)
     d3.json(url).then(function (pulled) {
         var xprice = []
@@ -44,21 +45,64 @@ function apiCall(input) {
             type : 'bar'
         };
         var barData = [trace];
+        console.log(d3.min(xprice) *.05)
+        console.log(d3.min(xprice))
+        console.log(d3.max(xprice))
 
         var layout = {
-            title : "Title here ",
+            title : "House Price",
+            yaxis : {
+                title : "Y axis here" ,
+                range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
+            },
             xaxis : {
-                label : "X axis here", 
-                range : [ d3.min(xprice), d3.max(xprice) ]
+                title : "X axis here "
             }
         };
 
-        Plotly.newPlot('bar', barData , layout , );
-
+        Plotly.newPlot('bar', barData , layout );
+        rentalAPI(areaCategory , input)
     })
 
 }
 
+function rentalAPI(areaCategory , input){
+    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_ZRIAH.json?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
+    // var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/_${indicatorCodeRental}?start_date=2017-01-01&api_key=${apiKey}`
+    console.log(url)
+    d3.json(url).then(function (pulled) {
+        var xprice = []
+        var ydate = []
+        pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
+        pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
+        console.log(ydate)
+        // console.log(Object.values(pulled))
+        var trace = {
+            x : ydate,
+            y : xprice, 
+            type : 'bar'
+        };
+        var barData = [trace];
+        console.log(d3.min(xprice) *.05)
+        console.log(d3.min(xprice))
+        console.log(d3.max(xprice))
+
+        var layout = {
+            title : "Rental Price",
+            yaxis : {
+                title : "Y axis here" ,
+                range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
+            },
+            xaxis : {
+                title : "X axis here "
+            }
+        };
+
+        Plotly.newPlot('gauge', barData , layout );
+    })
+}
+
+// using the "Select Area Category" this activates the select option and saves the change
 function category () {
     var areaCat = d3.select('#main');
     var areaCategory = areaCat.node().value;
@@ -66,20 +110,24 @@ function category () {
     console.log(areaCategory)
     console.log(txt)
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
-    return areaCategry
+    return areaCategory
 }
 
 
 
 
-
+// this is linked to the submit button on the page and activates the search 
 d3.select('#Submit').on('click' , handleSubmit);
-areaCategroy = d3.selectAll('#main').on('change' , category)
+// Activates the category function and saves what is chosen by the user
+d3.selectAll('#main').on('change' , category)
 
+
+
+// Activated by the user, saves the type of info they want
 function optionChanged () {
     id = d3.select("#selDataset").property('value');
-    var indicatorCode = findID(id)
-    return indicatorCode
+    var indicatorCodePrice = findID(id)
+    return indicatorCodePrice
 }
 
 
