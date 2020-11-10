@@ -10,15 +10,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 import json
 
-engine = create_engine('postgresql://scott:tiger@localhost/mydatabase')
-
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(engine, reflect=True)
+# engine = create_engine('postgresql://postgresql:admin22:12345@localhost5342/mydatabase')
+# connection = engine.connect()
 
 
-session = Session(engine)
+
+
+# session = Session(engine)
 
 app = Flask(__name__)
 
@@ -26,10 +24,14 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/api/buy")
+def buy():
+    "Hello World"
+
 
 
 
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
