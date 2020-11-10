@@ -1,12 +1,13 @@
 from bs4 import BeautifulSoup
 from splinter import Browser
+from flask import Flask, jsonify, render_template, redirect, url_for, Response
 import requests
 import pandas as pd
 import os 
 import numpy as np
-from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from flask import Flask
+import json
 
 engine = create_engine('postgresql://scott:tiger@localhost/mydatabase')
 
@@ -20,6 +21,9 @@ session = Session(engine)
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 
