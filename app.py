@@ -13,9 +13,6 @@ import json
 # engine = create_engine('postgresql://postgresql:admin22:12345@localhost5342/mydatabase')
 # connection = engine.connect()
 
-
-
-
 # session = Session(engine)
 
 app = Flask(__name__)
