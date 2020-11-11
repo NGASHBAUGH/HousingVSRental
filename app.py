@@ -10,10 +10,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 import json
 
-# engine = create_engine('postgresql://postgresql:admin22:12345@localhost5342/mydatabase')
-# connection = engine.connect()
+engine = create_engine('postgresql://postgresql:admin2:12345@localhost5342/Project_2')
+connection = engine.connect()
 
-# session = Session(engine)
+session = Session(engine)
 
 app = Flask(__name__)
 
@@ -21,9 +21,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/api/buy")
+@app.route("/buy")  
 def buy():
-    "Hello World"
+    session = Session(engine)
+    return "Hello World"
 
 
 

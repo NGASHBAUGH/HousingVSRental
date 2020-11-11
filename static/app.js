@@ -137,7 +137,7 @@ function optionChanged () {
     return indicatorCodePrice
 }
 
-init()
+// init()
 
 // function getPlots(id){
 //     d3.json("/Housing.json").then (sampledata => {
