@@ -9,16 +9,17 @@ var areaCategory = "Z"
 var indicatorCodePrice = 'ZHVISF'
 var indicatorCodeRental = "MRPST.json"
 
+// //Listing dropdown
+// d3.json('ListingType.json').then(function (data) {
+//     // console.log(Object.keys(data.ListingTypes[0]))
+//     var Listings = Object.keys(data.ListingTypes);
+//     d3.select('#selDataset').selectAll('option').data(Listings)
+//     .enter().append("option").html(function (d){
+//         return d
+//     })
 
-d3.json('ListingType.json').then(function (data) {
-    // console.log(Object.keys(data.ListingTypes[0]))
-    var Listings = Object.keys(data.ListingTypes);
-    d3.select('#selDataset').selectAll('option').data(Listings)
-    .enter().append("option").html(function (d){
-        return d
-    })
+// })
 
-})
 function findID (ID) {
     d3.json("ListingType.json").then(function(typeID) {
         var indicatorCodePrice = typeID.ListingTypes[ID]
@@ -130,17 +131,16 @@ d3.selectAll('#main').on('change' , category)
 
 
 
-// Activated by the user, saves the type of info they want
-function optionChanged () {
-    id = d3.select("#selDataset").property('value');
-    var indicatorCodePrice = findID(id)
-    return indicatorCodePrice
-}
+// // Activated by the user, saves the type of info they want
+// function optionChanged () {
+//     id = d3.select("#selDataset").property('value');
+//     var indicatorCodePrice = findID(id)
+//     return indicatorCodePrice
+// }
 
-d3.json('http:127.0.0.1:5000/sql', function(data){
-    // var Zip = data.C2018[zipcode];
-    // return Zip
-    console.log(data)
+d3.json('/sql').then(function(data){
+
+    console.log("test")
 });
 
 // init()
