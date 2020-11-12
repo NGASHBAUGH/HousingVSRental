@@ -1,19 +1,11 @@
-from bs4 import BeautifulSoup
-from splinter import Browser
 from flask import Flask, jsonify, render_template, redirect, url_for, Response
 import requests
 import pandas as pd
-import os 
-import numpy as np
 from sqlalchemy import create_engine
-
-from sqlalchemy.orm import Session
 import json
 
-# engine = create_engine('postgresql://postgresql:admin22:12345@localhost5342/mydatabase')
-# connection = engine.connect()
-
-# session = Session(engine)
+engine = create_engine('postgresql://admin2:12345@localhost:5432/Project_2')
+connection = engine.connect()
 
 app = Flask(__name__)
 
@@ -21,12 +13,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/api/buy")
-def buy():
-    "Hello World"
-
-
-
+@app.route("/sql")  
+def sql():
+    C2018 = pd.read_sql('select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018', connection)
+    return C2018.to_json()
 
 
 
