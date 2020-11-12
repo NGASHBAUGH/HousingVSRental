@@ -4,7 +4,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import json
 
-engine = create_engine('postgresql://admin2:12345@localhost:5342/Project_2')
+engine = create_engine('postgresql://admin2:12345@localhost:5432/Project_2')
 connection = engine.connect()
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ def index():
 
 @app.route("/sql")  
 def sql():
-    C2018 = pd.read_sql('select * from census_2018', connection)
+    C2018 = pd.read_sql('select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018', connection)
     return C2018.to_json()
 
 
