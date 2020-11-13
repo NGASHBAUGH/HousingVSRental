@@ -16,7 +16,7 @@ def index():
 @app.route("/sql")  
 def sql():
     C2018 = pd.read_sql('select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018', connection)
-    return C2018.to_json()
+    return C2018.to_json() 
 
 
 

@@ -7,7 +7,7 @@ var areaCategory = "Z"
 //  Remove unused code 
 //  
 var indicatorCodePrice = 'ZHVISF'
-var indicatorCodeRental = "MRPST.json"
+var indicatorCodeRental = "RIAH.json"
 
 // //Listing dropdown
 // d3.json('ListingType.json').then(function (data) {
@@ -30,41 +30,42 @@ function findID (ID) {
 function handleSubmit(){
     d3.event.preventDefault();
     var userInput = d3.select('#input').node().value;
-    console.log(userInput)
+    // console.log(userInput)
     d3.select('#input').node().value = "";
     apiCall(userInput)
 }
 
 function apiCall(input) {
     // console.log(input)
-    console.log(areaCategory)
+    // console.log(areaCategory)
     apiKey = "sPG_jsHhtuegYcT7TNWz"
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=${apiKey}`
-    console.log(url)
+    // console.log(url)
     d3.json(url).then(function (pulled) {
+        console.log(pulled)
         var xprice = []
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
-        console.log(ydate)
+        // console.log(ydate)
         var trace = {
             x : ydate,
             y : xprice, 
             type : 'bar'
         };
         var barData = [trace];
-        console.log(d3.min(xprice) *.05)
-        console.log(d3.min(xprice))
-        console.log(d3.max(xprice))
+        // console.log(d3.min(xprice) *.05)
+        // console.log(d3.min(xprice))
+        // console.log(d3.max(xprice))
 
         var layout = {
             title : "House Price",
             yaxis : {
-                title : "Y axis here" ,
+                title : "Price of House" ,
                 range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
             },
             xaxis : {
-                title : "X axis here "
+                title : "Years"
             }
         };
 
@@ -77,13 +78,14 @@ function apiCall(input) {
 function rentalAPI(areaCategory , input){
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_ZRIAH.json?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
     // var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/_${indicatorCodeRental}?start_date=2017-01-01&api_key=${apiKey}`
-    console.log(url)
+    // console.log(url)
     d3.json(url).then(function (pulled) {
         var xprice = []
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
-        console.log(ydate)
+        d3.select('#bar').selectAll('p').enter().append("p").text("pulled.dataset.name")
+        // console.log(ydate)
         // console.log(Object.values(pulled))
         var trace = {
             x : ydate,
@@ -91,18 +93,18 @@ function rentalAPI(areaCategory , input){
             type : 'bar'
         };
         var barData = [trace];
-        console.log(d3.min(xprice) *.05)
-        console.log(d3.min(xprice))
-        console.log(d3.max(xprice))
+        // console.log(d3.min(xprice) *.05)
+        // console.log(d3.min(xprice))
+        // console.log(d3.max(xprice))
 
         var layout = {
-            title : "Rental Price",
+            title : "Rental Index",
             yaxis : {
-                title : "Y axis here" ,
+                title : "Rental Price" ,
                 range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
             },
             xaxis : {
-                title : "X axis here "
+                title : "Year"
             }
         };
 
@@ -115,8 +117,8 @@ function category () {
     var areaCat = d3.select('#main');
     var areaCategory = areaCat.node().value;
     var txt = document.getElementById('main').selectedOptions[0].text
-    console.log(areaCategory)
-    console.log(txt)
+    // console.log(areaCategory)
+    // console.log(txt)
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
     return areaCategory
 }
@@ -140,7 +142,7 @@ d3.selectAll('#main').on('change' , category)
 
 d3.json('/sql').then(function(data){
 
-    console.log("test")
+    // console.log("test")
 });
 
 // init()
