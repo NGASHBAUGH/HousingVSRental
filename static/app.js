@@ -7,7 +7,7 @@ var areaCategory = "Z"
 //  Remove unused code 
 //  
 var indicatorCodePrice = 'ZHVISF'
-var indicatorCodeRental = "RIAH.json"
+var indicatorCodeRental = "ZRISFRR.json"
 
 // //Listing dropdown
 // d3.json('ListingType.json').then(function (data) {
@@ -27,9 +27,7 @@ function findID (ID) {
     })
 }
 
-d3.json('/sql').then(function(data){
-    console.log(data.zipcode)
-});
+
 
 function handleSubmit(){
     d3.event.preventDefault();
@@ -42,6 +40,10 @@ function handleSubmit(){
 function apiCall(input) {
     // console.log(input)
     // console.log(areaCategory)
+    var cen2018 = d3.json(`/sqlsearch/${input}`).then(function(data){
+        console.log(data)
+        return data
+    });
     apiKey = "sPG_jsHhtuegYcT7TNWz"
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=${apiKey}`
     // console.log(url)
@@ -58,10 +60,19 @@ function apiCall(input) {
             y : xprice, 
             type : 'bar'
         };
+
+
+        console.log(Promise.resolve(cen2018))
+        // var d1 = {date:"1/1/2018",close: data.median_household_income["0"] };
+        // var d2 = {date:"1/1/2019",close: data.median_household_income["0"] };
+
+        // svg.append("line")
+        // .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
+        //         x2: x(d2.date), y2: y(d2.close)  //end of the line
+        //       });
         var barData = [trace];
-        // console.log(d3.min(xprice) *.05)
-        // console.log(d3.min(xprice))
-        // console.log(d3.max(xprice))
+
+
 
         var layout = {
             title : "House Price",
@@ -124,6 +135,8 @@ function category () {
     var txt = document.getElementById('main').selectedOptions[0].text
 
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
+
+
     return areaCategory
 }
 
