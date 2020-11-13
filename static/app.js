@@ -27,6 +27,10 @@ function findID (ID) {
     })
 }
 
+d3.json('/sql').then(function(data){
+    console.log(data.zipcode)
+});
+
 function handleSubmit(){
     d3.event.preventDefault();
     var userInput = d3.select('#input').node().value;
@@ -47,7 +51,8 @@ function apiCall(input) {
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
-        // console.log(ydate)
+        var barT = d3.select('#barText').html("")
+        barT.append("h4").text(pulled.dataset.name)
         var trace = {
             x : ydate,
             y : xprice, 
@@ -77,14 +82,14 @@ function apiCall(input) {
 
 function rentalAPI(areaCategory , input){
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_ZRIAH.json?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
-    // var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/_${indicatorCodeRental}?start_date=2017-01-01&api_key=${apiKey}`
-    // console.log(url)
+
     d3.json(url).then(function (pulled) {
         var xprice = []
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
-        d3.select('#bar').selectAll('p').enter().append("p").text("pulled.dataset.name")
+        var barT = d3.select('#gaugeText').html("")
+        barT.append("h4").text(pulled.dataset.name)
         // console.log(ydate)
         // console.log(Object.values(pulled))
         var trace = {
@@ -117,8 +122,7 @@ function category () {
     var areaCat = d3.select('#main');
     var areaCategory = areaCat.node().value;
     var txt = document.getElementById('main').selectedOptions[0].text
-    // console.log(areaCategory)
-    // console.log(txt)
+
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
     return areaCategory
 }
@@ -140,10 +144,7 @@ d3.selectAll('#main').on('change' , category)
 //     return indicatorCodePrice
 // }
 
-d3.json('/sql').then(function(data){
 
-    // console.log("test")
-});
 
 // init()
 
