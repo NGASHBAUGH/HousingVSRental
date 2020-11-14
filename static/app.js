@@ -34,7 +34,7 @@ function handleSubmit(){
     // console.log(userInput)
     d3.select('#input').node().value = "";
     apiCall(userInput)
-    createMap()
+    // createMap()
     apiCall(userInput);
     getDemoInfo(userInput)
 }
@@ -67,14 +67,6 @@ function apiCall(input) {
             type : 'bar'
         };
 
-        // console.log(Promise.resolve(cen2018))
-        // var d1 = {date:"1/1/2018",close: data.median_household_income["0"] };
-        // var d2 = {date:"1/1/2019",close: data.median_household_income["0"] };
-
-        // svg.append("line")
-        // .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
-        //         x2: x(d2.date), y2: y(d2.close)  //end of the line
-        //       });
         var barData = [trace];
 
 
@@ -99,36 +91,77 @@ function rentalAPI(areaCategory , input){
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_ZRIAH.json?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
 
     d3.json(url).then(function (pulled) {
+        console.log(pulled)
         var xprice = []
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
         var barT = d3.select('#gaugeText').html("")
         barT.append("h4").text(pulled.dataset.name)
-        // console.log(ydate)
-        // console.log(Object.values(pulled))
+
+
         var trace = {
             x : ydate,
             y : xprice, 
             type : 'bar'
         };
         var barData = [trace];
-        // console.log(d3.min(xprice) *.05)
-        // console.log(d3.min(xprice))
-        // console.log(d3.max(xprice))
 
+    
+        d3.json(`/sqlsearch/${input}`).then(function(data){
+            var info1 = data
+            var medIncome = (info1.median_household_income[0]/12)/3
+            
+            // var hline = shline <- function(y = 5000, color = "blue") {
+            //         type = "line", 
+            //         x0 = "1/1/2018", 
+            //         x1 = "1/1/2019", 
+            //         xref = "paper",
+            //         y0 = medIncome, 
+            //         y1 = medIncome
+            //         // line = list(color = color)
+            //     } 
+            var hline = {
+                type : "line", 
+                xref : 'paper', 
+                x0 : 0, 
+                x1 : 1, 
+                y0 : medIncome, 
+                y1 : medIncome,
+                line : {
+                    color: 'rgb(255, 0, 0)',
+                    width: 4,
+                    dash:'dot'
+                }
+                // line = list(color = color)
+            } 
+            // return [hline , medIncome]
+        // })
+        // hline = both[0]
+        // medIncome = both[1]
+        console.log(hline)
+        console.log(medIncome)
+        var minRent = d3.min(xprice)
+        if (medIncome < minRent ){
+            var minRentRange = medIncome
+        }
+        if (medIncome> minRent){
+            var minRentRange = minRent
+        }
         var layout = {
+            shapes : [hline], 
             title : "Rental Index",
             yaxis : {
                 title : "Rental Price" ,
-                range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
+                range : [ minRentRange - (minRentRange * .01), d3.max(xprice) +d3.min(xprice) *.01]
             },
             xaxis : {
-                title : "Year"
+                title : "Years"
             }
         };
 
         Plotly.newPlot('gauge', barData , layout );
+    })
     })
 }
 
@@ -144,44 +177,32 @@ function category () {
 }
 
 //MAP
-function createMap() {
 
-    d3.csv("uszipcodes.csv").then(function(data) {
-        console.log(data[0]);
-      });
+function createMap(latitude , longitude){
 
-    // Define streetmap and darkmap layers
+    let map 
+
     var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-      attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-      tileSize: 512,
-      maxZoom: 18,
-      zoomOffset: -1,
-      id: "map",
-      accessToken: "pk.eyJ1Ijoiam9yZGFudSIsImEiOiJja2dyYjN0MGowMHZ5MnVuenR0ZG8weHl2In0.wlCzpVVa_PgxzWRK2s2rRA"
-    });
-  
-    // Define a baseMaps object to hold our base layers
-    var baseMaps = {
-      "Street Map": streetmap,
-    };
+    tileSize: 512,
+    maxZoom: 50,
+    zoomOffset: -1,
+    id: "mapbox/streets-v11",
+    accessToken: "pk.eyJ1Ijoiam9yZGFudSIsImEiOiJja2dyYjN0MGowMHZ5MnVuenR0ZG8weHl2In0.wlCzpVVa_PgxzWRK2s2rRA"
 
+    //   accessToken: API_KEY
+    });
+    // Creates map for layers to be placed on. 
     var myMap = L.map("map", {
-        center: [
-          37.09, -95.71
+    center: [
+        latitude , longitude
+
         ],
-        zoom: 5,
-        layers: [streetmap]
-      });
-    
-  
-    // Create a layer control
-    // Pass in our baseMaps and overlayMaps
-    // Add the layer control to the map
-    L.control.layers(baseMaps, {
-      collapsed: false
-    }).addTo(myMap);
-  }
-  
+    zoom: 11
+    // layers: [darkmap, earthquakes]
+    });
+    // Add the steet map to the map as a layer
+    streetmap.addTo(myMap)
+}
 
 // this is linked to the submit button on the page and activates the search 
 d3.select('#Submit').on('click' , handleSubmit);
@@ -195,11 +216,40 @@ function getDemoInfo(input){
     d3.json(`/sqlsearch/${input}`).then(function(data){
         var info2 = data
         console.log(info2.city[0])
+        console.log(info2.lng[0])
+        console.log(info2.lat[0])
+        createMap(info2.lat[0] , info2.lng[0])
         var result = info2
+        var medIncome = info2.median_household_income[0]
+
+        // hline <- function(y = 5000, color = "blue") {
+        //     list(
+        //       type = "line", 
+        //       x0 = 0, 
+        //       x1 = 1, 
+        //       xref = "paper",
+        //       y0 = y, 
+        //       y1 = y, 
+        //       line = list(color = color)
+        //     )
+        //   }
+        // var d1 = {date:"1/1/2018",close: medIncome };
+        // var d2 = {date:"1/1/2019",close: medIncome };
+
+        // svg.append("line")
+        //     .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
+        //         x2: x(d2.date), y2: y(d2.close)  //end of the line
+        //       });
+
+
         var marketInfo = d3.select("#sample-metadata");
         marketInfo.html("");
-        Object.entries(info2).forEach((key) => {   
-            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1][0] + "\n");
+        Object.entries(info2).forEach((key) => { 
+            var text = key[0].toUpperCase()
+            text = text.replace("_" , " ")
+            text = text.replace("_" , " ")
+            text = text.replace("_" , " ")
+            marketInfo.append("h5").text(text+ ": " + key[1][0] + "\n");
         });
     })
 }
