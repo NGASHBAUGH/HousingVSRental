@@ -28,22 +28,26 @@ function findID (ID) {
 }
 
 
-
 function handleSubmit(){
     d3.event.preventDefault();
     var userInput = d3.select('#input').node().value;
     // console.log(userInput)
     d3.select('#input').node().value = "";
-    apiCall(userInput)
+    apiCall(userInput);
+    getDemoInfo(userInput)
 }
 
 function apiCall(input) {
-    // console.log(input)
-    // console.log(areaCategory)
-    var cen2018 = d3.json(`/sqlsearch/${input}`).then(function(data){
-        console.log(data)
-        return data
+    d3.json(`/sqlsearch/${input}`).then(function(data){
+        var info = data
+        // var info = data.city[0]
+        console.log(info)
     });
+
+    // var info = d3.map(cen2018, function(d){
+    //     console.log(info)
+    // })
+    
     apiKey = "sPG_jsHhtuegYcT7TNWz"
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=${apiKey}`
     // console.log(url)
@@ -61,7 +65,6 @@ function apiCall(input) {
             type : 'bar'
         };
 
-
         // console.log(Promise.resolve(cen2018))
         // var d1 = {date:"1/1/2018",close: data.median_household_income["0"] };
         // var d2 = {date:"1/1/2019",close: data.median_household_income["0"] };
@@ -71,7 +74,6 @@ function apiCall(input) {
         //         x2: x(d2.date), y2: y(d2.close)  //end of the line
         //       });
         var barData = [trace];
-
 
 
         var layout = {
@@ -136,10 +138,8 @@ function category () {
 
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
 
-
     return areaCategory
 }
-
 
 
 
@@ -149,100 +149,15 @@ d3.select('#Submit').on('click' , handleSubmit);
 d3.selectAll('#main').on('change' , category)
 
 
-
-// // Activated by the user, saves the type of info they want
-// function optionChanged () {
-//     id = d3.select("#selDataset").property('value');
-//     var indicatorCodePrice = findID(id)
-//     return indicatorCodePrice
-// }
-
-
-
-// init()
-
-// function getPlots(id){
-//     d3.json("/Housing.json").then (sampledata => {
-//         console.log(sampledata);
-//         var Zip = sampledata.metadata[0].ZIP;
-//         var Values =  sampledata.metadata[1].median2018;
-//         var TopValues = Values.slice(0,10).reverse();
-//         console.log(TopValues)
-//         // var labels =  sampledata.metadata[0].ZIP.slice(0,10);
-//         // console.log (labels);
-//         var ZipTop = sampledata.metadata[0].ZIP.slice(0,10).reverse();
-//         var Zip_id = ZipTop.map(d => "Zip " + d);
-//         var trace   = {
-//             x: Cost,
-//             y: Zip_id,
-//             text: "2018 Median Home Sale Value",
-//             marker: {
-//                 color: 'blue'},
-//             type: 'bar',
-//             orientation: 'h',
-//         };
-//         var data = [trace]
-    
-//         var layout = {
-//             title : 'Top 10 Zip Codes',
-//             yaxis: {
-//                 tickmode: 'linear'
-//             },
-//             margin: {
-//                 l: 100,
-//                 r: 100,
-//                 t: 100,
-//                 b: 30,
-//             }
-//         };
-//         Plotly.newPlot("bar", data, layout);
-//     })
-// };
-
-// function getDemoInfo(id){
-//     d3.json("/Housing.json").then 
-// }
-
-// function optionChanged(id) {
-//     getPlots(id);
-//     getDemoInfo(id);
-// }
-
-
-// // function button ()
-
-// function init() {
-//     // select dropdown menu 
-//     var dropdown = d3.select("#selDataset");
-
-
-//     // read the data 
-//     d3.json("/Housing.json").then((data)=> {
-//         console.log(data)
-//         // get the id data to the dropdwown menu
-//         data.zip.forEach(function(name) {
-//             dropdown.append("option").text(name).property("value");
-//         });
-
-//         // call the functions to display the data and the plots to the page
-//         getPlots(data.zip[0]);
-//         getDemoInfo(data.zip[0]);
-//     });
-// }
-
-
-
-
-// d3.json("/Housing.json").then ((data) => {
-//     var metadata = data.metadata;
-//     console.log(metadata)
-//     var result = metadata.filter(meta => meta.zip.toString() === zip)[0];
-//     var demographicInfo = d3.select("#sample-metadata");
-//     demographicInfo.html("");
-//     Object.entries(result).forEach((key) => {   
-//         demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
-//     });
-// })
-
-
-
+function getDemoInfo(input){
+    d3.json(`/sqlsearch/${input}`).then(function(data){
+        var info2 = data
+        console.log(info2.city[0])
+        var result = info2
+        var marketInfo = d3.select("#sample-metadata");
+        marketInfo.html("");
+        Object.entries(result).forEach((key, key2) => {   
+            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[0] + "\n");
+        });
+    })
+}
