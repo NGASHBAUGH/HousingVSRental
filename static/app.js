@@ -163,7 +163,7 @@ function getDemoInfo(input){
         var marketInfo = d3.select("#sample-metadata");
         marketInfo.html("");
         Object.entries(result).forEach((key, key2) => {   
-            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + info[0][0] + "\n");
+            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[0] + "\n");
         });
     })
 }
