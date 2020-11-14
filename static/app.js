@@ -62,7 +62,7 @@ function apiCall(input) {
         };
 
 
-        console.log(Promise.resolve(cen2018))
+        // console.log(Promise.resolve(cen2018))
         // var d1 = {date:"1/1/2018",close: data.median_household_income["0"] };
         // var d2 = {date:"1/1/2019",close: data.median_household_income["0"] };
 
@@ -243,6 +243,5 @@ d3.selectAll('#main').on('change' , category)
 //         demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
 //     });
 // })
-
 
 
