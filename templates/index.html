@@ -25,6 +25,23 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-lg-2">
+            <div class="well">
+
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="barText" class = "well">
+                
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="gaugeText" class = "well">
+                
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-2">
             <div class="well">
               <h5>Select Area Category</h5>
@@ -36,7 +53,7 @@
               <!-- NEED TO CREATE INPUT -->
               <form action=""> <br> 
                 <label for="userinput" id="searchLabel">Type Zipcode</label>
-                <input type="text" id="input" style='width: 100px' ><br><br>
+                <input type="text" id="input" style='width: 100px' placeholder="95670"><br><br>
                 <input id="Submit" type="submit" value="Search">
               </form><br><br>
 
@@ -52,13 +69,12 @@
           </div>
           <div class="col-md-5">
             <div id="bar">
-              <p id="barText" style = "background-color: white;">  </p>
             </div>
             
           </div>
           <div class="col-md-5">
-            <div id="gauge"></div>
-            <p id="gaugeText" class = "barGraphInfo"></p>
+            <div id="gauge">
+            </div>
           </div>
         </div>
         <div class="row">
@@ -85,6 +101,8 @@
   <script type="text/javascript" src="static/app.js"></script>
   <script type="text/javascript" src="../app.py"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
+<script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
   <!-- <script src="ListingType.json"></script> -->
 
 </body>

@@ -13,11 +13,15 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/sql")  
+@app.route("/homes/<zipcode>")  
 def sql():
     C2018 = pd.read_sql('select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018', connection)
     return C2018.to_json() 
 
+@app.route("/sqlsearch/<zipcode>")  
+def sqlsearch(zipcode):
+    C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018 where zipcode={zipcode}', connection)
+    return C2018.to_json() 
 
 
 if __name__ == '__main__':

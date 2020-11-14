@@ -7,7 +7,7 @@ var areaCategory = "Z"
 //  Remove unused code 
 //  
 var indicatorCodePrice = 'ZHVISF'
-var indicatorCodeRental = "RIAH.json"
+var indicatorCodeRental = "ZRISFRR.json"
 
 // //Listing dropdown
 // d3.json('ListingType.json').then(function (data) {
@@ -27,6 +27,7 @@ function findID (ID) {
     })
 }
 
+
 function handleSubmit(){
     d3.event.preventDefault();
     var userInput = d3.select('#input').node().value;
@@ -34,11 +35,21 @@ function handleSubmit(){
     d3.select('#input').node().value = "";
     apiCall(userInput)
     createMap()
+    apiCall(userInput);
+    getDemoInfo(userInput)
 }
 
 function apiCall(input) {
-    // console.log(input)
-    // console.log(areaCategory)
+    d3.json(`/sqlsearch/${input}`).then(function(data){
+        var info = data
+        // var info = data.city[0]
+        console.log(info)
+    });
+
+    // var info = d3.map(cen2018, function(d){
+    //     console.log(info)
+    // })
+    
     apiKey = "sPG_jsHhtuegYcT7TNWz"
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=${apiKey}`
     // console.log(url)
@@ -48,16 +59,24 @@ function apiCall(input) {
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
-        // console.log(ydate)
+        var barT = d3.select('#barText').html("")
+        barT.append("h4").text(pulled.dataset.name)
         var trace = {
             x : ydate,
             y : xprice, 
             type : 'bar'
         };
+
+        // console.log(Promise.resolve(cen2018))
+        // var d1 = {date:"1/1/2018",close: data.median_household_income["0"] };
+        // var d2 = {date:"1/1/2019",close: data.median_household_income["0"] };
+
+        // svg.append("line")
+        // .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
+        //         x2: x(d2.date), y2: y(d2.close)  //end of the line
+        //       });
         var barData = [trace];
-        // console.log(d3.min(xprice) *.05)
-        // console.log(d3.min(xprice))
-        // console.log(d3.max(xprice))
+
 
         var layout = {
             title : "House Price",
@@ -78,14 +97,14 @@ function apiCall(input) {
 
 function rentalAPI(areaCategory , input){
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_ZRIAH.json?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
-    // var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/_${indicatorCodeRental}?start_date=2017-01-01&api_key=${apiKey}`
-    // console.log(url)
+
     d3.json(url).then(function (pulled) {
         var xprice = []
         var ydate = []
         pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
-        d3.select('#bar').selectAll('p').enter().append("p").text("pulled.dataset.name")
+        var barT = d3.select('#gaugeText').html("")
+        barT.append("h4").text(pulled.dataset.name)
         // console.log(ydate)
         // console.log(Object.values(pulled))
         var trace = {
@@ -118,9 +137,9 @@ function category () {
     var areaCat = d3.select('#main');
     var areaCategory = areaCat.node().value;
     var txt = document.getElementById('main').selectedOptions[0].text
-    // console.log(areaCategory)
-    // console.log(txt)
+
     d3.select('#searchLabel').html("").text(`Type ${txt}`)
+
     return areaCategory
 }
 
@@ -164,7 +183,6 @@ function createMap() {
   }
   
 
-
 // this is linked to the submit button on the page and activates the search 
 d3.select('#Submit').on('click' , handleSubmit);
 // Activates the category function and saves what is chosen by the user
@@ -172,102 +190,19 @@ d3.selectAll('#main').on('change' , category)
 
 
 
-// // Activated by the user, saves the type of info they want
-// function optionChanged () {
-//     id = d3.select("#selDataset").property('value');
-//     var indicatorCodePrice = findID(id)
-//     return indicatorCodePrice
-// }
 
-d3.json('/sql').then(function(data){
-
-    // console.log("test")
-});
-
-// init()
-
-// function getPlots(id){
-//     d3.json("/Housing.json").then (sampledata => {
-//         console.log(sampledata);
-//         var Zip = sampledata.metadata[0].ZIP;
-//         var Values =  sampledata.metadata[1].median2018;
-//         var TopValues = Values.slice(0,10).reverse();
-//         console.log(TopValues)
-//         // var labels =  sampledata.metadata[0].ZIP.slice(0,10);
-//         // console.log (labels);
-//         var ZipTop = sampledata.metadata[0].ZIP.slice(0,10).reverse();
-//         var Zip_id = ZipTop.map(d => "Zip " + d);
-//         var trace   = {
-//             x: Cost,
-//             y: Zip_id,
-//             text: "2018 Median Home Sale Value",
-//             marker: {
-//                 color: 'blue'},
-//             type: 'bar',
-//             orientation: 'h',
-//         };
-//         var data = [trace]
-    
-//         var layout = {
-//             title : 'Top 10 Zip Codes',
-//             yaxis: {
-//                 tickmode: 'linear'
-//             },
-//             margin: {
-//                 l: 100,
-//                 r: 100,
-//                 t: 100,
-//                 b: 30,
-//             }
-//         };
-//         Plotly.newPlot("bar", data, layout);
-//     })
-// };
-
-// function getDemoInfo(id){
-//     d3.json("/Housing.json").then 
-// }
-
-// function optionChanged(id) {
-//     getPlots(id);
-//     getDemoInfo(id);
-// }
-
-
-// // function button ()
-
-// function init() {
-//     // select dropdown menu 
-//     var dropdown = d3.select("#selDataset");
-
-
-//     // read the data 
-//     d3.json("/Housing.json").then((data)=> {
-//         console.log(data)
-//         // get the id data to the dropdwown menu
-//         data.zip.forEach(function(name) {
-//             dropdown.append("option").text(name).property("value");
-//         });
-
-//         // call the functions to display the data and the plots to the page
-//         getPlots(data.zip[0]);
-//         getDemoInfo(data.zip[0]);
-//     });
-// }
-
-
-
-
-// d3.json("/Housing.json").then ((data) => {
-//     var metadata = data.metadata;
-//     console.log(metadata)
-//     var result = metadata.filter(meta => meta.zip.toString() === zip)[0];
-//     var demographicInfo = d3.select("#sample-metadata");
-//     demographicInfo.html("");
-//     Object.entries(result).forEach((key) => {   
-//         demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1] + "\n");
-//     });
-// })
+function getDemoInfo(input){
+    d3.json(`/sqlsearch/${input}`).then(function(data){
+        var info2 = data
+        console.log(info2.city[0])
+        var result = info2
+        var marketInfo = d3.select("#sample-metadata");
+        marketInfo.html("");
+        Object.entries(info2).forEach((key) => {   
+            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1][0] + "\n");
+        });
+    })
+}
 
 
 
