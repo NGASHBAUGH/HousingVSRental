@@ -11,6 +11,7 @@
           background-image: url('https://thumbs.dreamstime.com/b/drone-view-clean-empty-neighborhood-street-row-single-family-houses-near-dallas-texas-america-suburban-home-bungalow-194287309.jpg');
         }
     </style>
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 <body>
     <div class="container">
@@ -18,6 +19,23 @@
           <div class="col-md-12 jumbotron text-center">
             <h1>Housing Purchase vs Rental Price Comparisons</h1>
             <p>Use the interactive charts below to explore the different housing markets</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="well">
+
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="barText" class = "well">
+                
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="gaugeText" class = "well">
+                
+            </div>
           </div>
         </div>
         <div class="row">
@@ -47,10 +65,13 @@
             </div>
           </div>
           <div class="col-md-5">
-            <div id="bar"></div>
+            <div id="bar">
+            </div>
+            
           </div>
           <div class="col-md-5">
-            <div id="gauge"></div>
+            <div id="gauge">
+            </div>
           </div>
         </div>
         <div class="row">
@@ -59,18 +80,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,9 +92,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript" src="static/app.js"></script>
-  <!-- <script type="text/javascript" src="static/mainData.js"></script> -->
-  <!-- <script src="../ListingType.json"></script> -->
+  <script type="text/javascript" src="../app.py"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- <script src="ListingType.json"></script> -->
 </body>
 </html>
