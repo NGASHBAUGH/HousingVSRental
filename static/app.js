@@ -60,11 +60,11 @@ function apiCall(input) {
         var layout = {
             title : "House Price",
             yaxis : {
-                title : "Y axis here" ,
+                title : "Median Home Value" ,
                 range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
             },
             xaxis : {
-                title : "X axis here "
+                title : "Month and Year "
             }
         };
 
@@ -98,11 +98,11 @@ function rentalAPI(areaCategory , input){
         var layout = {
             title : "Rental Price",
             yaxis : {
-                title : "Y axis here" ,
+                title : "Median Rental Price" ,
                 range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
             },
             xaxis : {
-                title : "X axis here "
+                title : "Month and Year "
             }
         };
 
@@ -230,3 +230,23 @@ d3.json('/sql').then(function(data){
 
 
 
+var granimInstance = new Granim({
+    element: '#canvas-image-blending',
+    direction: 'top-bottom',
+    isPausedWhenNotInView: true,
+    image : {
+        source: '../assets/img/bg-forest.jpg',
+        blendingMode: 'multiply',
+    },
+    states : {
+        "default-state": {
+            gradients: [
+                ['#29323c', '#485563'],
+                ['#FF6B6B', '#556270'],
+                ['#80d3fe', '#7ea0c4'],
+                ['#f0ab51', '#eceba3']
+            ],
+            transitionSpeed: 7000
+        }
+    }
+});
