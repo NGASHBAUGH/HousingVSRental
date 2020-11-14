@@ -149,6 +149,8 @@ d3.select('#Submit').on('click' , handleSubmit);
 d3.selectAll('#main').on('change' , category)
 
 
+
+
 function getDemoInfo(input){
     d3.json(`/sqlsearch/${input}`).then(function(data){
         var info2 = data
@@ -161,5 +163,6 @@ function getDemoInfo(input){
         });
     })
 }
+
 
 
