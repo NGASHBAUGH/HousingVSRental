@@ -158,12 +158,12 @@ d3.selectAll('#main').on('change' , category)
 function getDemoInfo(input){
     d3.json(`/sqlsearch/${input}`).then(function(data){
         var info2 = data
-        console.log(info2)
+        console.log(info2.city[0])
         var result = info2
         var marketInfo = d3.select("#sample-metadata");
         marketInfo.html("");
-        Object.entries(result).forEach((key) => {   
-            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[0] + "\n");
+        Object.entries(result).forEach((key, key2) => {   
+            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + info[0][0] + "\n");
         });
     })
 }
