@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyVsRenting</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
         body {
           background-image: url('https://thumbs.dreamstime.com/b/drone-view-clean-empty-neighborhood-street-row-single-family-houses-near-dallas-texas-america-suburban-home-bungalow-194287309.jpg');
@@ -15,18 +17,23 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
+  
 </head>
 <body>
     <div class="container">
         <div class="row">
-          <div class="col-md-12 jumbotron text-center">
-            <h1>Housing Purchase vs Rental Price Comparisons</h1>
-            <p>Use the interactive charts below to explore the different housing markets</p>
+          <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
+            <h1 style="color: ivory;">Housing Purchase vs Rental Price Comparisons</h1>
+            <p style="color: ivory;">Use the interactive charts below to explore the different housing markets</p>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-2">
             <div class="well">
+              <button id="Zillow">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.oI9iu8HvlnQNMjOaA2FScQHaGq&pid=Api&P=0&w=205&h=186" alt="Zillow" width="100" height="100"><br>
+                Click Here for property listings
+              </button>
 
             </div>
           </div>
@@ -37,7 +44,7 @@
           </div>
           <div class="col-md-5">
             <div id="gaugeText" class = "well">
-                
+                <img src="" alt="">
             </div>
           </div>
         </div>
