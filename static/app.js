@@ -37,6 +37,7 @@ function handleSubmit(){
     // createMap()
     apiCall(userInput);
     getDemoInfo(userInput)
+    button(userInput)
 }
 
 function apiCall(input) {
@@ -254,5 +255,9 @@ function getDemoInfo(input){
     })
 }
 
+d3.select("#Zillow").on('click', button);
 
+function button(input){
+    document.getElementById("Zillow".href = `https://www.zillow.com/homes/${input}_rb/`)
+}
 
