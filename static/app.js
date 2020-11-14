@@ -34,16 +34,21 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     // console.log(userInput)
     d3.select('#input').node().value = "";
-    apiCall(userInput)
+    apiCall(userInput);
+    getDemoInfo(userInput)
 }
 
 function apiCall(input) {
-    // console.log(input)
-    // console.log(areaCategory)
-    var cen2018 = d3.json(`/sqlsearch/${input}`).then(function(data){
-        console.log(data)
-        return data
+    d3.json(`/sqlsearch/${input}`).then(function(data){
+        var info = data
+        // var info = data.city[0]
+        console.log(info)
     });
+
+    // var info = d3.map(cen2018, function(d){
+    //     console.log(info)
+    // })
+    
     apiKey = "sPG_jsHhtuegYcT7TNWz"
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=${apiKey}`
     // console.log(url)
@@ -150,12 +155,20 @@ d3.selectAll('#main').on('change' , category)
 
 
 
-// // Activated by the user, saves the type of info they want
-// function optionChanged () {
-//     id = d3.select("#selDataset").property('value');
-//     var indicatorCodePrice = findID(id)
-//     return indicatorCodePrice
-// }
+function getDemoInfo(input){
+    d3.json(`/sqlsearch/${input}`).then(function(data){
+        var info2 = data
+        console.log(info2)
+        var result = info2
+        var marketInfo = d3.select("#sample-metadata");
+        marketInfo.html("");
+        Object.entries(result).forEach((key) => {   
+            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[0] + "\n");
+        });
+    })
+}
+
+
 
 
 
