@@ -307,6 +307,15 @@ function getHomes(input){
         console.log(info3)
         console.log(info3.year_structure_built_1939_or_earlier)
         var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+        var y1940 = (info3.year_structure_built_1940_to_1949[0])
+        var y1950 = (info3.year_structure_built_1950_to_1959[0])
+        var y1960 = (info3.year_structure_built_1960_to_1969[0])
+        var y1970 = (info3.year_structure_built_1970_to_1979[0])
+        var y1980 = (info3.year_structure_built_1980_to_1989[0])
+        var y1990 = (info3.year_structure_built_1990_to_1999[0])
+        var y2000 = (info3.year_structure_built_2000_to_2009[0])
+        var y2010 = (info3.year_structure_built_2010_to_2013[0])
+        var y2014 = (info3.year_structure_built_2014_or_later[0])
 d3.select("#Zillow").on('click', button);
 
 function button(input){
