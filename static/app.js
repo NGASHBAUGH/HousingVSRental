@@ -38,6 +38,8 @@ function handleSubmit(){
     // createMap()
     apiCall(userInput);
     getDemoInfo(userInput)
+    getHomes(userInput)
+    button(userInput)
 }
 
 function apiCall(input) {
@@ -237,5 +239,78 @@ function getDemoInfo(input){
     })
 }
 
+// function getHouseBuiltInfo(input){
+//     d3.json(`/homes/${input}`).then(function(data){
+//         var info3 = data
+//         console.log(info3.city[0])
+//         console.log(info3.lng[0])
+//         console.log(info3.lat[0])
+//         console.log(info3.year_structure_built_1939_or_earlier[0])
+//         console.log(info3.year_structure_built_1940_to_1949[0])
+//         console.log(info3.year_structure_built_1950_to_1959[0])
+//         console.log(info3.year_structure_built_1960_to_1969[0])
+//         console.log(info3.year_structure_built_1970_to_1979[0])
+//         console.log(info3.year_structure_built_1980_to_1989[0])
+//         console.log(info3.year_structure_built_1990_to_1999[0])
+//         console.log(info3.year_structure_built_2000_to_2009[0])
+//         console.log(info3.year_structure_built_2010_to_2013[0])
+//         console.log(info3.year_structure_built_2014_or_later[0])
+//         // createMap(info3.lat[0] , info3.lng[0])
+//         // var result = info3
+//         // var medIncome = info3.median_household_income[0]
+
+//         // hline <- function(y = 5000, color = "blue") {
+//         //     list(
+//         //       type = "line", 
+//         //       x0 = 0, 
+//         //       x1 = 1, 
+//         //       xref = "paper",
+//         //       y0 = y, 
+//         //       y1 = y, 
+//         //       line = list(color = color)
+//         //     )
+//         //   }
+//         // var d1 = {date:"1/1/2018",close: medIncome };
+//         // var d2 = {date:"1/1/2019",close: medIncome };
+
+//         // svg.append("line")
+//         //     .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
+//         //         x2: x(d2.date), y2: y(d2.close)  //end of the line
+//         //       });
 
 
+
+//         });
+//     })
+// }
+
+function getHomes(input){
+    d3.json(`/homes/${input}`).then(function(data){
+        var info3 = data
+        console.log(info3)
+        console.log(info3.year_structure_built_1939_or_earlier)
+        var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+        var y1940 = (info3.year_structure_built_1940_to_1949[0])
+        var y1950 = (info3.year_structure_built_1950_to_1959[0])
+        var y1960 = (info3.year_structure_built_1960_to_1969[0])
+        var y1970 = (info3.year_structure_built_1970_to_1979[0])
+        var y1980 = (info3.year_structure_built_1980_to_1989[0])
+        var y1990 = (info3.year_structure_built_1990_to_1999[0])
+        var y2000 = (info3.year_structure_built_2000_to_2009[0])
+        var y2010 = (info3.year_structure_built_2010_to_2013[0])
+        var y2014 = (info3.year_structure_built_2014_or_later[0])
+
+        var trace1 = {
+            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+            values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2010, y2014],
+            type: 'pie'
+        }
+d3.select("#Zillow").on('click', button);
+
+function button(input){
+    document.getElementById("Zillow".href = `https://www.zillow.com/homes/${input}_rb/`)
+}
+
+        console.log("Hello")
+    })
+}
