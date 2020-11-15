@@ -38,6 +38,7 @@ function handleSubmit(){
     apiCall(userInput);
     getDemoInfo(userInput)
     getHomes(userInput)
+    button(userInput)
 }
 
 function apiCall(input) {
@@ -306,6 +307,11 @@ function getHomes(input){
         console.log(info3)
         console.log(info3.year_structure_built_1939_or_earlier)
         var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+d3.select("#Zillow").on('click', button);
+
+function button(input){
+    document.getElementById("Zillow".href = `https://www.zillow.com/homes/${input}_rb/`)
+}
 
         console.log("Hello")
     })
