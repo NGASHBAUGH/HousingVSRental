@@ -33,6 +33,7 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     // console.log(userInput)
     d3.select('#input').node().value = "";
+
     apiCall(userInput)
     // createMap()
     apiCall(userInput);
@@ -214,6 +215,9 @@ d3.selectAll('#main').on('change' , category)
 
 
 function getDemoInfo(input){
+    var ul = d3.select("#sample-metadata")
+    ul.html("");
+
     d3.json(`/sqlsearch/${input}`).then(function(data){
         var info2 = data
         console.log(info2.city[0])
@@ -222,17 +226,45 @@ function getDemoInfo(input){
         createMap(info2.lat[0] , info2.lng[0])
 
 
-        var marketInfo = d3.select("#sample-metadata");
-        marketInfo.html("");
+
+
         Object.entries(info2).forEach((key) => { 
             var text = key[0].toUpperCase()
             text = text.replace("_" , " ")
             text = text.replace("_" , " ")
             text = text.replace("_" , " ")
-            marketInfo.append("h5").text(text+ ": " + key[1][0] + "\n");
+            ul.append("p").text(text+ ": " + key[1][0] + "\n");
         });
     })
 }
 
+
+
+function getHomes(input){
+    d3.json(`/homes/${input}`).then(function(data){
+        var info3 = data
+        console.log(info3)
+        console.log(info3.year_structure_built_1939_or_earlier)
+        var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+        var y1940 = (info3.year_structure_built_1940_to_1949[0])
+        var y1950 = (info3.year_structure_built_1950_to_1959[0])
+        var y1960 = (info3.year_structure_built_1960_to_1969[0])
+        var y1970 = (info3.year_structure_built_1970_to_1979[0])
+        var y1980 = (info3.year_structure_built_1980_to_1989[0])
+        var y1990 = (info3.year_structure_built_1990_to_1999[0])
+        var y2000 = (info3.year_structure_built_2000_to_2009[0])
+        var y2010 = (info3.year_structure_built_2010_to_2013[0])
+        var y2014 = (info3.year_structure_built_2014_or_later[0])
+
+        var trace1 = {
+            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+            values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2010, y2014],
+            type: 'pie'
+        }
+d3.select("#Zillow").on('click', button);
+
+function button(input){
+    document.getElementById("Zillow".href = `https://www.zillow.com/homes/${input}_rb/`)
+}
 
 
