@@ -38,7 +38,6 @@ function handleSubmit(){
     // createMap()
     apiCall(userInput);
     getDemoInfo(userInput)
-    button(userInput)
 }
 
 function apiCall(input) {
@@ -219,12 +218,13 @@ function getDemoInfo(input){
     d3.json(`/sqlsearch/${input}`).then(function(data){
         var info2 = data
         console.log(info2.city[0])
-        var result = info2
+        
         var marketInfo = d3.select("#sample-metadata");
         marketInfo.html("");
         Object.entries(info2).forEach((key) => {   
-            marketInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1][0] + "\n");
+            marketInfo.append("h5").text(key[0].toUpperCase().replace("_", " ").replace("_", " ") + ": " + key[1][0] + "\n");
         });
+        createMap(info2.lat[0] , info2.lng[0])
     })
 }
 
