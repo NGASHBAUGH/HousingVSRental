@@ -37,6 +37,7 @@ function handleSubmit(){
     // createMap()
     apiCall(userInput);
     getDemoInfo(userInput)
+    getHomes(userInput)
 }
 
 function apiCall(input) {
@@ -254,5 +255,58 @@ function getDemoInfo(input){
     })
 }
 
+// function getHouseBuiltInfo(input){
+//     d3.json(`/homes/${input}`).then(function(data){
+//         var info3 = data
+//         console.log(info3.city[0])
+//         console.log(info3.lng[0])
+//         console.log(info3.lat[0])
+//         console.log(info3.year_structure_built_1939_or_earlier[0])
+//         console.log(info3.year_structure_built_1940_to_1949[0])
+//         console.log(info3.year_structure_built_1950_to_1959[0])
+//         console.log(info3.year_structure_built_1960_to_1969[0])
+//         console.log(info3.year_structure_built_1970_to_1979[0])
+//         console.log(info3.year_structure_built_1980_to_1989[0])
+//         console.log(info3.year_structure_built_1990_to_1999[0])
+//         console.log(info3.year_structure_built_2000_to_2009[0])
+//         console.log(info3.year_structure_built_2010_to_2013[0])
+//         console.log(info3.year_structure_built_2014_or_later[0])
+//         // createMap(info3.lat[0] , info3.lng[0])
+//         // var result = info3
+//         // var medIncome = info3.median_household_income[0]
+
+//         // hline <- function(y = 5000, color = "blue") {
+//         //     list(
+//         //       type = "line", 
+//         //       x0 = 0, 
+//         //       x1 = 1, 
+//         //       xref = "paper",
+//         //       y0 = y, 
+//         //       y1 = y, 
+//         //       line = list(color = color)
+//         //     )
+//         //   }
+//         // var d1 = {date:"1/1/2018",close: medIncome };
+//         // var d2 = {date:"1/1/2019",close: medIncome };
+
+//         // svg.append("line")
+//         //     .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
+//         //         x2: x(d2.date), y2: y(d2.close)  //end of the line
+//         //       });
 
 
+
+//         });
+//     })
+// }
+
+function getHomes(input){
+    d3.json(`/homes/${input}`).then(function(data){
+        var info3 = data
+        console.log(info3)
+        console.log(info3.year_structure_built_1939_or_earlier)
+        var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+
+        console.log("Hello")
+    })
+}
