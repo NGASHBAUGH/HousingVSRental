@@ -316,6 +316,12 @@ function getHomes(input){
         var y2000 = (info3.year_structure_built_2000_to_2009[0])
         var y2010 = (info3.year_structure_built_2010_to_2013[0])
         var y2014 = (info3.year_structure_built_2014_or_later[0])
+
+        var trace1 = {
+            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+            values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2010, y2014],
+            type: 'pie'
+        }
 d3.select("#Zillow").on('click', button);
 
 function button(input){
