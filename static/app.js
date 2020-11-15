@@ -33,6 +33,7 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     // console.log(userInput)
     d3.select('#input').node().value = "";
+
     apiCall(userInput)
     // createMap()
     apiCall(userInput);
@@ -213,43 +214,25 @@ d3.selectAll('#main').on('change' , category)
 
 
 function getDemoInfo(input){
+    var ul = d3.select("#sample-metadata")
+    ul.html("");
+
     d3.json(`/sqlsearch/${input}`).then(function(data){
         var info2 = data
         console.log(info2.city[0])
         console.log(info2.lng[0])
         console.log(info2.lat[0])
         createMap(info2.lat[0] , info2.lng[0])
-        var result = info2
-        var medIncome = info2.median_household_income[0]
-
-        // hline <- function(y = 5000, color = "blue") {
-        //     list(
-        //       type = "line", 
-        //       x0 = 0, 
-        //       x1 = 1, 
-        //       xref = "paper",
-        //       y0 = y, 
-        //       y1 = y, 
-        //       line = list(color = color)
-        //     )
-        //   }
-        // var d1 = {date:"1/1/2018",close: medIncome };
-        // var d2 = {date:"1/1/2019",close: medIncome };
-
-        // svg.append("line")
-        //     .attr({ x1: x(d1.date), y1: y(d1.close), //start of the line
-        //         x2: x(d2.date), y2: y(d2.close)  //end of the line
-        //       });
 
 
-        var marketInfo = d3.select("#sample-metadata");
-        marketInfo.html("");
+
+
         Object.entries(info2).forEach((key) => { 
             var text = key[0].toUpperCase()
             text = text.replace("_" , " ")
             text = text.replace("_" , " ")
             text = text.replace("_" , " ")
-            marketInfo.append("h5").text(text+ ": " + key[1][0] + "\n");
+            ul.append("p").text(text+ ": " + key[1][0] + "\n");
         });
     })
 }
