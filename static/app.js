@@ -21,12 +21,12 @@ var indicatorCodeRental = "ZRISFRR.json"
 
 // })
 
-function findID (ID) {
-    d3.json("ListingType.json").then(function(typeID) {
-        var indicatorCodePrice = typeID.ListingTypes[ID]
-        return indicatorCodePrice
-    })
-}
+// function findID (ID) {
+//     d3.json("ListingType.json").then(function(typeID) {
+//         var indicatorCodePrice = typeID.ListingTypes[ID]
+//         return indicatorCodePrice
+//     })
+// }
 
 
 function handleSubmit(){
@@ -289,17 +289,39 @@ function getHomes(input){
         var y2010 = (info3.year_structure_built_2010_to_2013[0])
         var y2014 = (info3.year_structure_built_2014_or_later[0])
         console.log(y2014)
-        
-        
-        var trace1 = [{
-            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+
+        var data = [{
+            type: 'pie',
             values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2014],
-            type: 'pie'
+            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+            textinfo: "label+percent",
+            textposition: 'outside',
+            automargin: true 
         }]
         var layout3 = {
-            title: f(`Pie Chart for the Years Structures Built in Zip Code ${input}`),
+            title: `Pie Chart for the Years Structures Built in Zip Code ${input}`,
             showlegend: true
         }
-        Plotly.newPlot("piechart", trace1, layout3);
+        Plotly.newPlot("piechart", data, layout3);
+                
     })
+
 };
+
+// var data = [{
+//     type: "pie",
+//     values: [2, 3, 4, 4],
+//     labels: ["Wages", "Operating expenses", "Cost of sales", "Insurance"],
+//     textinfo: "label+percent",
+//     textposition: "outside",
+//     automargin: true
+//   }]
+  
+//   var layout = {
+//     height: 400,
+//     width: 400,
+//     margin: {"t": 0, "b": 0, "l": 0, "r": 0},
+//     showlegend: false
+//     }
+  
+//   Plotly.newPlot('pie', data, layout)
