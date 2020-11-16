@@ -1,4 +1,5 @@
 var areaCategory = "Z"
+var count = 0
 // TODO 
 //  Find out what is wrong with the Indicator codes I have
 //   Clean up graphs
@@ -143,17 +144,24 @@ function rentalAPI(areaCategory , input){
         console.log(medIncome)
         var minRent = d3.min(xprice)
         if (medIncome < minRent ){
-            var minRentRange = medIncome
+            var minRentRange = medIncome - (medIncome *.01)
         }
         if (medIncome> minRent){
-            var minRentRange = minRent
+            var minRentRange = minRent  -(minRent * .01)
+        }
+        var maxRent = d3.max(xprice)
+        if (medIncome > maxRent ){
+            var maxRentRange = medIncome + (medIncome *.01)
+        }
+        if (medIncome < maxRent){
+            var maxRentRange = maxRent + (maxRent * .01)
         }
         var layout = {
             shapes : [hline], 
             title : "Rental Index",
             yaxis : {
                 title : "Rental Price" ,
-                range : [ minRentRange - (minRentRange * .01), d3.max(xprice) +d3.min(xprice) *.01]
+                range : [ minRentRange, maxRentRange]
             },
             xaxis : {
                 title : "Years"
@@ -177,8 +185,14 @@ function category () {
 }
 
 //MAP
+let myMap 
 
 function createMap(latitude , longitude){
+    count = 1 + count 
+    if (count > 1 ){
+        map.remove()
+        document.getElementById('contianerMap').innerHTML ="<div id='map' style='height: 400px;'    ></div>" ;
+    }
 
     var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     tileSize: 512,
@@ -190,7 +204,11 @@ function createMap(latitude , longitude){
     //   accessToken: API_KEY
     });
     // Creates map for layers to be placed on. 
-    var myMap = L.map("map", {
+    console.log("--------------------------------------------")
+    console.log(longitude)
+    console.log(latitude)
+
+        var myMap = L.map("map", {
     center: [
         latitude , longitude
 
@@ -199,6 +217,8 @@ function createMap(latitude , longitude){
     // layers: [darkmap, earthquakes]
     });
     // Add the steet map to the map as a layer
+    // myMap.setView(new L.LatLng(latitude , longitude), 11)
+
     streetmap.addTo(myMap)
     
 }
