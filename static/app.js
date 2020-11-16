@@ -33,11 +33,10 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     // console.log(userInput)
     d3.select('#input').node().value = "";
-
     apiCall(userInput)
-    // createMap()
     apiCall(userInput);
     getDemoInfo(userInput)
+    getHomes(userInput)
 }
 
 function apiCall(input) {
@@ -181,8 +180,6 @@ function category () {
 
 function createMap(latitude , longitude){
 
-    let map 
-
     var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     tileSize: 512,
     maxZoom: 50,
@@ -203,14 +200,13 @@ function createMap(latitude , longitude){
     });
     // Add the steet map to the map as a layer
     streetmap.addTo(myMap)
+    
 }
 
 // this is linked to the submit button on the page and activates the search 
 d3.select('#Submit').on('click' , handleSubmit);
 // Activates the category function and saves what is chosen by the user
 d3.selectAll('#main').on('change' , category)
-
-
 
 
 
@@ -257,24 +253,33 @@ function getDemoInfo(input){
 
 
 
-// function getHomes(input){
-//     d3.json(`/homes/${input}`).then(function(data){
-//         var info3 = data
-//         console.log(info3)
-//         console.log(info3.year_structure_built_1939_or_earlier)
-//         var y1939 = (info3.year_structure_built_1939_or_earlier[0])
-//         var y1940 = (info3.year_structure_built_1940_to_1949[0])
-//         var y1950 = (info3.year_structure_built_1950_to_1959[0])
-//         var y1960 = (info3.year_structure_built_1960_to_1969[0])
-//         var y1970 = (info3.year_structure_built_1970_to_1979[0])
-//         var y1980 = (info3.year_structure_built_1980_to_1989[0])
-//         var y1990 = (info3.year_structure_built_1990_to_1999[0])
-//         var y2000 = (info3.year_structure_built_2000_to_2009[0])
-//         var y2010 = (info3.year_structure_built_2010_to_2013[0])
-//         var y2014 = (info3.year_structure_built_2014_or_later[0])
-
-//         var trace1 = {
-//             labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
-//             values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2010, y2014],
-//             type: 'pie'
-//         }
+function getHomes(input){
+    d3.json(`/homes/${input}`).then(function(data){
+        var info3 = data
+        console.log(info3)
+        console.log(info3.year_structure_built_1939_or_earlier[0])
+        var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+        var y1940 = (info3.year_structure_built_1940_to_1949[0])
+        var y1950 = (info3.year_structure_built_1950_to_1959[0])
+        var y1960 = (info3.year_structure_built_1960_to_1969[0])
+        var y1970 = (info3.year_structure_built_1970_to_1979[0])
+        var y1980 = (info3.year_structure_built_1980_to_1989[0])
+        var y1990 = (info3.year_structure_built_1990_to_1999[0])
+        var y2000 = (info3.year_structure_built_2000_to_2009[0])
+        var y2010 = (info3.year_structure_built_2010_to_2013[0])
+        var y2014 = (info3.year_structure_built_2014_or_later[0])
+        console.log(y2014)
+        
+        
+        var trace1 = [{
+            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+            values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2014],
+            type: 'pie'
+        }]
+        var layout3 = {
+            title: f(`Pie Chart for the Years Structures Built in Zip Code ${input}`),
+            showlegend: true
+        }
+        Plotly.newPlot("piechart", trace1, layout3);
+    })
+};
