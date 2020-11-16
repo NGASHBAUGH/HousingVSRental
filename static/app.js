@@ -294,13 +294,13 @@ function getHomes(input){
             type: 'pie',
             values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2014],
             labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
-            textinfo: "label+percent",
+            // textinfo: "label+percent",
             textposition: 'outside',
             automargin: true 
         }]
         var layout3 = {
             title: `Pie Chart for the Years Structures Built in Zip Code ${input}`,
-            showlegend: true
+            showlegend: true,
         }
         Plotly.newPlot("piechart", data, layout3);
                 
