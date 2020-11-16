@@ -258,7 +258,7 @@ function getHomes(input){
   
 //   Plotly.newPlot('pie', data, layout)
 
-
+// Rafael
 
 // Will be used later to search counties and states 
 // // using the "Select Area Category" this activates the select option and saves the change
