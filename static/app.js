@@ -213,7 +213,7 @@ function createMap(latitude , longitude){
         latitude , longitude
 
         ],
-    zoom: 11
+    zoom: 12
     // layers: [darkmap, earthquakes]
     });
     // Add the steet map to the map as a layer
