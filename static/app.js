@@ -239,36 +239,3 @@ function getHomes(input){
     })
 
 };
-
-// var data = [{
-//     type: "pie",
-//     values: [2, 3, 4, 4],
-//     labels: ["Wages", "Operating expenses", "Cost of sales", "Insurance"],
-//     textinfo: "label+percent",
-//     textposition: "outside",
-//     automargin: true
-//   }]
-  
-//   var layout = {
-//     height: 400,
-//     width: 400,
-//     margin: {"t": 0, "b": 0, "l": 0, "r": 0},
-//     showlegend: false
-//     }
-  
-//   Plotly.newPlot('pie', data, layout)
-
-
-
-// Will be used later to search counties and states 
-// // using the "Select Area Category" this activates the select option and saves the change
-// function category () {
-//     // Select the code in the HTML
-//     var areaCat = d3.select('#main');
-//     var areaCategory = areaCat.node().value;
-//     var txt = document.getElementById('main').selectedOptions[0].text
-
-//     d3.select('#searchLabel').html("").text(`Type ${txt}`)
-
-//     return areaCategory
-// }
