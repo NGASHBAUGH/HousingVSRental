@@ -41,7 +41,7 @@ function apiCall(input) {
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
-        barT.append("h4").text(pulled.dataset.name)
+        barT.append("h4").attr("class","well").text(pulled.dataset.name)
         // create a trace for the houing graph
         var trace = {
             x : ydate,
@@ -72,7 +72,7 @@ function apiCall(input) {
 // API call to the rental data and then creating a bar graph
 function rentalAPI(areaCategory , input){
     // API Key was free and the same for all users 
-    var redline = d3.select("#Redline").html("").append("h4").text('The red line represents the median household income divided by 12(for months) and then divided by 3, because a good rule of thumb is to not spend more than one third of your monthly income on rent')
+    var redline = d3.select("#Redline").html("").append("h4").attr("class","well").text('The red line represents the median household income divided by 12(for months) and then divided by 3, because a good rule of thumb is to not spend more than one third of your monthly income on rent')
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodeRental}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
     // API call to grab the rental data then creating the graph
     d3.json(url).then(function (pulled) {
@@ -83,7 +83,7 @@ function rentalAPI(areaCategory , input){
         pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#gaugeText').html("")
-        barT.append("h4").text(pulled.dataset.name)
+        barT.append("h4").attr("class","well").text(pulled.dataset.name)
         // create a trace for the houing graph
         var trace = {
             x : ydate,
@@ -98,7 +98,7 @@ function rentalAPI(areaCategory , input){
         d3.json(`/sqlsearch/${input}`).then(function(data){
 
             var info1 = data
-            // divide the income by 12 for months then by 3, a good rule of thumb is dont spend more than 1/3 of your income for housing
+            // divide the income by 12 for months then by 3, a good rule of thumb is dont spend more than 1/3 of your income fo housing
             var medIncome = (info1.median_household_income[0]/12)/3
             // create the line 
             var hline = {
