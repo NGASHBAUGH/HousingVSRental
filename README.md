@@ -1,4 +1,4 @@
-# HousingVSRental
+# HousingVSRental 
 In this Project we wanted to visualize house marked date within the entire US.
 
 First we used Jupyter Notebook to run an API query through the US Census sight to get the most recent (2018) census data.
